@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import logoImg from '../assets/images/logo.svg';
@@ -13,13 +14,24 @@ type RoomParams = {
 
 export function Room() {
     const params = useParams<RoomParams>();
+    const [newQuestion, setNewsQuestion] = useState('');
+
+    const roomId = params.id;
+
+    async function handleSendQuestion() {
+        if(newQuestion.trim() === '') {
+            return;
+        };
+
+        if()
+    };
 
     return (
         <div id="page-room">
             <header>
                 <div className="content">
                     <img src={logoImg} alt="Letmeask" />
-                    <RoomCode code={params.id} />
+                    <RoomCode code={roomId} />
                 </div>
             </header>
             <main>
@@ -31,6 +43,8 @@ export function Room() {
                 <form>
                     <textarea
                         placeholder="O que você quer perguntar?"
+                        onChange={event => setNewsQuestion(event.target.value)}
+                        value={newQuestion}
                     />
 
                     <div className="form-footer">
